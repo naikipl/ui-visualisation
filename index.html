@@ -1,0 +1,35 @@
+<!doctype HTML>
+<!--
+UI Project for SWEN303 @ VUW.
+A visualisation of poverty in respect of the UN millenium goals.
+Author: Naiki Pohe (@naikipl)
+Version: 1.0
+-->
+<html>
+<head>
+	<TITLE>World Poverty Visualisation</TITLE>
+	<LINK href="page.css" rel="stylesheet" type="text/css">
+	<SCRIPT src="canvas.js" type="text/javascript"></SCRIPT>
+</head>
+
+<body onload="initialize();">
+	<img id="logo" src="logo.png" align="right" height="" width=""/>
+<div id="body-wrapper">
+	<div id="header">
+	</div><!-- /header -->
+	
+	<div id="content">
+		<img src="world.png" usemap="#worldmap" id="map" />
+		<map name="worldmap">
+		  <area shape="polygon" coords="19,44,45,11,87,37,82,76,49,98"  />
+		  <area shape="circle" coords="90,58,3" href="mercur.htm" alt="Mercury" />
+		  <area shape="circle" coords="124,58,8" href="venus.htm" alt="Venus" />
+		</map>
+	</div><!-- /content -->
+	
+	<div id="footer">
+	
+	</div><!-- /footer -->
+</div>
+</body>
+</html>

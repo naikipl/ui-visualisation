@@ -1,0 +1,21 @@
+body{
+margin:0;
+padding:0;
+}
+#body-wrapper{
+width:900px;
+margin:auto;
+}
+#header{
+height:80px;
+}
+#content{
+width:900px;
+height:400px;
+}
+#footer{
+height:80px;
+}
+#map{
+border: solid black 0px;
+}
