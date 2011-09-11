@@ -8,28 +8,131 @@ Version: 1.0
 <html>
 <head>
 	<TITLE>World Poverty Visualisation</TITLE>
-	<LINK href="page.css" rel="stylesheet" type="text/css">
-	<SCRIPT src="canvas.js" type="text/javascript"></SCRIPT>
+	<LINK href="page2.css" rel="stylesheet" type="text/css">
+	<SCRIPT src="canvas2.js" type="text/javascript"></SCRIPT>
+	<SCRIPT src="raphael-min.js" type="text/javascript"></SCRIPT>
+	<script>
+	function writeText() {
+  		var fieldNameElement = document.getElementById('compare');
+  		if(fieldNameElement.innerHTML == 'Compare OFF'){
+  			fieldNameElement.innerHTML = 'Compare ON';
+  			fieldNameElement.setAttribute("class", "button on")
+  			document.getElementById('text').style.display="inline";}
+  		else {
+  			fieldNameElement.innerHTML = 'Compare OFF';
+  			fieldNameElement.setAttribute("class", "button");
+  			document.getElementById('text').style.display="none";}
+	}
+	function writeDonate() {
+  		var fieldNameElement = document.getElementById('donate');
+  		if(fieldNameElement.innerHTML == 'Donate Locations OFF'){
+  			fieldNameElement.innerHTML = 'Donate Locations ON';
+  			fieldNameElement.setAttribute("class", "button on tag_donate");}
+  		else {
+  			fieldNameElement.innerHTML = 'Donate Locations OFF';
+  			fieldNameElement.setAttribute("class", "button tag_donate");}
+	}
+	</script>
 </head>
 
-<body onload="initialize();">
-	<img id="logo" src="logo.png" align="right" height="" width=""/>
+<body><!-- onload="draw()" draws the map based on poly coordinates -->
 <div id="body-wrapper">
 	<div id="header">
+	<center><h1>World Hunger</h1></center>
+		<div class="tag_donate">
+		Enter your email address and tag this<br>location to be notified of changes<br><br>
+			<input type=textbox id=textbox value="Email address" 
+			onFocus="if (value == 'Email address') {value=''}" onBlur="if (value== '') {value='Email address'}"></input>
+			<div class="button break" id=tagbutton></div>
+		</div>
+		<div class="button tag_donate" id=donate OnClick="writeDonate()">Donate Locations OFF</div>
+		<div id="filters">
+			<div class=break>Colour by population of 
+			<div class="button space">World</div> or
+			<div class="button space">Country</div></div>
+			<div class=break>Year:
+			<div class=button name=04 id=04>2004</div>
+			<div class=button name=05 id=05>2005</div>
+			<div class=button>2006</div>
+			<div class=button>2007</div>
+			<div class=button>2008</div>
+			<div class=button>2009</div>
+			<div class=button>2010</div>
+			<div class="button on">2011</div>
+			<div class=button id=compare OnClick="writeText()">Compare OFF</div>
+			<div id=text>please select 2 years</div>
+			</div>
+			Age range:
+			<input type=checkbox checked=true> 0-20 </input>
+			<input type=checkbox checked=true> 20-40 </input>
+			<input type=checkbox checked=true> 40-60 </input>
+			<input type=checkbox checked=true> 60-70 </input>
+			<input type=checkbox checked=true> 70+ </input>
+		</div>
+	<!--
+	5.clicking on map region to zoom in
+	6.compare years textbox
+	-->
 	</div><!-- /header -->
-	
-	<div id="content">
-		<img src="world.png" usemap="#worldmap" id="map" />
-		<map name="worldmap">
-		  <area shape="polygon" coords="19,44,45,11,87,37,82,76,49,98"  />
-		  <area shape="circle" coords="90,58,3" href="mercur.htm" alt="Mercury" />
-		  <area shape="circle" coords="124,58,8" href="venus.htm" alt="Venus" />
-		</map>
-	</div><!-- /content -->
+	<div id=bread></div>
+	<div id=return class=button OnClick="javascript:location.reload(true)">Back to WORLD VIEW</div>
+	<center><div id="paper"></div></center><!-- /paper -->
 	
 	<div id="footer">
-	
+		<div id="africa">
+			<h2>Africa</h2>
+			<p>
+				Sub-Saharan Africa clearly is in need of high levels of food security assistance, 
+				ranking highest in the proportion of undernourished at the region, sub-region and 
+				country levels from 1997-1999, and experiencing little improvement since 1990-1992, 
+				and no improvement looking back to 1969-71.  Among its sub-regions, Central Africa 
+				is the worst off, however some of the worst performing countries are also in East 
+				and Southern Africa, as described above.  West Africa as a sub-region performs well, 
+				but it does have several countries with undernourishment rates of over 40% 
+				(Liberia, Niger and Sierra Leone).
+			</p>
+		</div>
+		<div id="usa">
+			<h2>India</h2>
+			<p>
+				Victoria is a state located in the south-eastern corner of Australia. It is the smallest mainland state in area but
+				the most densely populated and urbanised. Prior to European settlement, some 30,000 Indigenous Australians lived in
+				the area now occupied by the state. By contrast, over five million people now inhabit the region. European settlement
+				in Victoria began in the 1830s as a farming community. Victoria is the second most populous Australian state, after New South Wales, with
+				an estimated population of 5,205,200 as of June 2007. Melbourne is Victoria’s capital and largest city, with more
+				than 70% of all Victorians living there.
+			</p>
+		</div>
 	</div><!-- /footer -->
+	<div id=descr>
+		<div id="uganda" class=hide>
+			<h2>Uganda</h2>
+			<p>
+				The hunger situation in Uganda has generally improved over the last few years. 
+				In the north, after more than two decades of fighting between the Lord’s Resistance 
+				Army and Government forces, peace has returned and over 80 percent of Internally 
+				Displaced Persons (IDPs) have moved back to their original homes and farms. 
+				In the west, over 88 percent of the refugees from Sudan and other countries 
+				have departed since 2006. And, in the northeast, the marginalized region of 
+				Karamoja is receiving more political attention and assistance.
+			</p>
+		</div>
+		<div id="africa2" class=hide>
+			<h2>Africa</h2>
+			<p>
+				Sub-Saharan Africa clearly is in need of high levels of food security assistance, 
+				ranking highest in the proportion of undernourished at the region, sub-region and 
+				country levels from 1997-1999, and experiencing little improvement since 1990-1992, 
+				and no improvement looking back to 1969-71.  Among its sub-regions, Central Africa 
+				is the worst off, however some of the worst performing countries are also in East 
+				and Southern Africa, as described above.  West Africa as a sub-region performs well, 
+				but it does have several countries with undernourishment rates of over 40% 
+				(Liberia, Niger and Sierra Leone).
+			</p>
+		</div>
+	</div>
+	
 </div>
 </body>
+
 </html>
